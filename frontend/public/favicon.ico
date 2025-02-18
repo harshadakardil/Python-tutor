@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <!-- Favicon -->
+  <symbol id="favicon" viewBox="0 0 32 32">
+    <rect width="32" height="32" fill="#3776AB"/>
+    <path d="M16 6 C10 6 8 8 8 12 L8 14 L16 14 L16 15 L6 15 C4 15 2 17 2 19 L2 23 C2 27 4 29 8 29 C12 29 14 27 14 23 L14 21 L6 21 L6 20 L16 20 C20 20 22 18 22 14 L22 12 C22 8 20 6 16 6 Z" fill="#FFD43B"/>
+    <circle cx="10" cy="10" r="1.5" fill="white"/>
+  </symbol>
