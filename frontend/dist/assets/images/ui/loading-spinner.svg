@@ -1,0 +1,44 @@
+import React from 'react';
+
+const LoadingSpinner: React.FC = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+    <style>
+      {`
+        .spinner {
+          animation: spin 1.5s linear infinite;
+          transform-origin: center;
+        }
+        
+        .dot {
+          animation: pulse 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+          0%, 100% { opacity: 0.3; }
+          50% { opacity: 1; }
+        }
+      `}
+    </style>
+    
+    <circle className="spinner"
+            cx="25" cy="25" r="20"
+            stroke="#3776AB"
+            strokeWidth="4"
+            strokeDasharray="60 30"
+            fill="none"/>
+    
+    <circle className="dot" cx="25" cy="25" r="3" fill="#FFD43B">
+      <animate attributeName="r"
+               values="3;5;3"
+               dur="1.5s"
+               repeatCount="indefinite"/>
+    </circle>
+  </svg>
+);
+
+export default LoadingSpinner;

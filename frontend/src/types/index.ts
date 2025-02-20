@@ -1,7 +1,7 @@
 // src/types/index.ts
 
 // Existing types
-export type TutorCharacterType = 'friendly_teacher' | 'robot';
+export type TutorCharacterType = 'friendly_teacher' | 'robot'| 'wizard-mentor';
 export type DifficultyLevel = 'beginner' | 'intermediate' | 'advanced';
 
 export interface TutorConfig {
