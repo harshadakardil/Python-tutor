@@ -3,6 +3,10 @@ from flask_cors import CORS
 import os
 from dotenv import load_dotenv
 import openai
+import sys
+import traceback
+from io import StringIO
+import contextlib
 
 app = Flask(__name__)
 CORS(app)
@@ -63,6 +67,37 @@ def chat():
     
     response = get_tutor_response(prompt, character)
     return jsonify({"response": response})
+
+# New execute code endpoint
+@app.route('/api/execute', methods=['POST'])
+def execute_code():
+    data = request.json
+    code = data.get('code', '')
+    
+    # Create StringIO objects to capture stdout and stderr
+    stdout_capture = StringIO()
+    stderr_capture = StringIO()
+    
+    execution_output = ""
+    execution_error = ""
+    success = False
+    
+    try:
+        # Redirect stdout and stderr
+        with contextlib.redirect_stdout(stdout_capture), contextlib.redirect_stderr(stderr_capture):
+            # Execute the code in a safe way
+            exec(code, {"__builtins__": __builtins__}, {})
+        
+        execution_output = stdout_capture.getvalue()
+        success = True
+    except Exception as e:
+        execution_error = f"{type(e).__name__}: {str(e)}\n{traceback.format_exc()}"
+    
+    return jsonify({
+        "success": success,
+        "output": execution_output,
+        "error": execution_error
+    })
 
 # Store lessons in memory
 LESSONS = [
