@@ -1,4 +1,4 @@
-import { Card } from '@/components/ui/card'
+import { Card } from './card'
 
 interface TutorCharacterProps {
   character: 'friendly_teacher' | 'robot' | 'wizard'
@@ -9,9 +9,9 @@ interface TutorCharacterProps {
 }
 
 const characterImages: Record<TutorCharacterProps['character'], string> = {
-  friendly_teacher: '/assets/images/characters/friendly-teacher.svg',
-  robot: '/assets/images/characters/robot-tutor.svg',
-  wizard: '/assets/images/characters/wizard-mentor.svg'
+  friendly_teacher: './components/svg/friendly-teacher.tsx',
+  robot: './components/svg/robot-tutor.tsx',
+  wizard: './components/svg/wizard-mentor.tsx'
 }
 
 export const TutorCharacter = ({

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TutorCharacter } from '../components/ui/TutorCharacter';
 import { apiClient } from '../api/client';
-import { TutorCharacterType, DifficultyLevel } from '@/types';
+import { TutorCharacterType, DifficultyLevel } from '../types';
 
 export const ConfigPage: React.FC = () => {
   const [apiKey, setApiKey] = useState('');

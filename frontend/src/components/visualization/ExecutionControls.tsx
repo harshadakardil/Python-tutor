@@ -1,6 +1,6 @@
 import React from 'react';
 import { PlayCircle, PauseCircle, SkipBack, SkipForward, RotateCcw } from 'lucide-react';
-import { VisualizationControls, ExecutionStep } from '@/types';
+import { VisualizationControls, ExecutionStep } from '../../types';
 
 interface ExecutionControlsProps extends Omit<VisualizationControls, 'onSliderChange'> {
   steps: ExecutionStep[];
@@ -12,7 +12,7 @@ const ExecutionControls: React.FC<ExecutionControlsProps> = ({
   totalSteps,
   isPlaying,
   executionSpeed,
-  steps,
+  steps = [],
   onPlay,
   onPause,
   onStepForward,
@@ -21,8 +21,6 @@ const ExecutionControls: React.FC<ExecutionControlsProps> = ({
   onSpeedChange,
   onSliderChange,
 }) => {
-  // Pre-convert values to strings for ARIA attributes
-
   return (
     <div className="w-full p-4 bg-white rounded-lg shadow-sm">
       {/* Progress Bar */}
@@ -31,18 +29,18 @@ const ExecutionControls: React.FC<ExecutionControlsProps> = ({
           Execution progress
         </label>
         <input
-           id="step-slider"
-           type="range"
-           min={0}
-           max={totalSteps - 1}
-           value={currentStep}
-           onChange={(e) => onSliderChange(Number(e.target.value))}
-           className="w-full"
-           aria-valuemin={0}                              // Changed from string to number
-           aria-valuemax={totalSteps - 1}                 // Changed from string to number
-           aria-valuenow={currentStep}                    // Changed from string to number
-           aria-label={`Step ${currentStep + 1} of ${totalSteps}`}
-         />
+         id="step-slider"
+         type="range"
+         min={0}
+         max={Math.max(0, totalSteps - 1)}
+         value={currentStep}
+         onChange={(e) => onSliderChange(Number(e.target.value))}
+         className="w-full"
+         aria-valuemin={0}
+         aria-valuemax={Math.max(0, totalSteps - 1)}
+         aria-valuenow={Math.max(0, Math.min(currentStep, totalSteps - 1))}
+         aria-label={`Step ${currentStep + 1} of ${totalSteps}`}
+        />
         <div className="flex justify-between text-sm text-gray-500">
           <span>Step {currentStep + 1} of {totalSteps}</span>
           <span>Time: {steps[currentStep]?.timestamp ? new Date(steps[currentStep].timestamp).toLocaleTimeString() : '--:--:--'}</span>

@@ -16,7 +16,7 @@
       "noUnusedParameters": true,
       "noFallthroughCasesInSwitch": true,
       "forceConsistentCasingInFileNames": true,  // Added this line
-      "baseUrl": ".",
+      "baseUrl": "./",
       "paths": {
         "@/*": ["src/*"],
         "@components/*": ["src/components/*"],

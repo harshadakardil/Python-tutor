@@ -7,16 +7,15 @@ interface SvgIconProps {
   fallback?: React.ReactNode;
 }
 
-const SVGIcon: React.FC<SvgIconProps> = ({ 
-  name, 
-  className = '', 
-  size = 24, 
-  fallback = null 
+export const SVGIcon: React.FC<SvgIconProps> = ({
+  name,
+  className = '',
+  size = 24,
+  fallback = null
 }) => {
   const [hasError, setHasError] = React.useState(false);
 
   React.useEffect(() => {
-    // Reset error state when icon name changes
     setHasError(false);
   }, [name]);
 
@@ -51,5 +50,3 @@ const SVGIcon: React.FC<SvgIconProps> = ({
     return fallback || null;
   }
 };
-
-export default SVGIcon;

@@ -10,14 +10,14 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
-      '@components': path.resolve(__dirname, 'src/components'),
-      '@pages': path.resolve(__dirname, 'src/pages'),
-      '@utils': path.resolve(__dirname, 'src/utils'),
-      '@api': path.resolve(__dirname, 'src/api'),
-      '@types': path.resolve(__dirname, 'src/types'),
-      '@styles': path.resolve(__dirname, 'src/styles'),
-      '@assets': path.resolve(__dirname, 'public/assets')
+      '@': path.resolve(__dirname, './src'),
+      '@components': path.resolve(__dirname, './src/components'),
+      '@pages': path.resolve(__dirname, './src/pages'),
+      '@utils': path.resolve(__dirname, './src/utils'),
+      '@api': path.resolve(__dirname, './src/api'),
+      '@types': path.resolve(__dirname, './src/types'),
+      '@styles': path.resolve(__dirname, './src/styles'),
+      '@assets': path.resolve(__dirname, './public/assets')
     }
   },
   build: {
@@ -25,7 +25,7 @@ export default defineConfig({
     sourcemap: true
   },
   server: {
-    port: 3000,
+    port: 5173,
     open: true
   }
 });

@@ -3,7 +3,6 @@ from flask_cors import CORS
 import os
 from dotenv import load_dotenv
 import openai
-import json
 
 app = Flask(__name__)
 CORS(app)
@@ -65,29 +64,38 @@ def chat():
     response = get_tutor_response(prompt, character)
     return jsonify({"response": response})
 
+# Store lessons in memory
+LESSONS = [
+    {
+        "id": 1,
+        "title": "Introduction to Python",
+        "description": "Learn about Python and write your first program!",
+        "difficulty": "beginner"
+    },
+    {
+        "id": 2,
+        "title": "Variables and Types",
+        "description": "Learn about different types of data in Python",
+        "difficulty": "beginner"
+    },
+    {
+        "id": 3,
+        "title": "Basic Operations",
+        "description": "Learn how to do math with Python",
+        "difficulty": "beginner"
+    }
+]
+
 @app.route('/api/lessons', methods=['GET'])
 def get_lessons():
-    lessons = [
-        {
-            "id": 1,
-            "title": "Introduction to Python",
-            "description": "Learn about Python and write your first program!",
-            "difficulty": "beginner"
-        },
-        {
-            "id": 2,
-            "title": "Variables and Types",
-            "description": "Learn about different types of data in Python",
-            "difficulty": "beginner"
-        },
-        {
-            "id": 3,
-            "title": "Basic Operations",
-            "description": "Learn how to do math with Python",
-            "difficulty": "beginner"
-        }
-    ]
-    return jsonify(lessons)
+    return jsonify(LESSONS)
+
+@app.route('/api/lessons/<int:lesson_id>', methods=['GET'])
+def get_lesson(lesson_id):
+    lesson = next((l for l in LESSONS if l['id'] == lesson_id), None)
+    if lesson:
+        return jsonify(lesson)
+    return jsonify({"error": "Lesson not found"}), 404
 
 if __name__ == '__main__':
     app.run(debug=True)
